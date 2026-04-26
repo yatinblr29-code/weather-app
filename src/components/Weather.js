@@ -9,8 +9,10 @@ function Weather() {
   const [coords, setCoords] = useState(null);
   const [theme, setTheme] = useState("light");
 
-const API_KEY = process.env.REACT_APP_API_KEY;
-git add src/components/Weather.js
+  const API_KEY = process.env.REACT_APP_API_KEY;
+
+  console.log("API KEY:", API_KEY);
+
   // 📍 Get current location
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -29,14 +31,19 @@ git add src/components/Weather.js
       .get(
         `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=${API_KEY}&units=metric`
       )
-      .then((res) => setWeather(res.data));
+      .then((res) => setWeather(res.data))
+      .catch((err) => console.log(err));
   }, [coords]);
 
   const fetchByCity = async (city) => {
-    const res = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
-    );
-    setWeather(res.data);
+    try {
+      const res = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+      );
+      setWeather(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
