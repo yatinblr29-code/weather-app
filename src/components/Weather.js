@@ -9,8 +9,8 @@ function Weather() {
   const [coords, setCoords] = useState(null);
   const [theme, setTheme] = useState("light");
 
-  const API_KEY = process.env.REACT_APP_API_KEY;;
-
+const API_KEY = process.env.REACT_APP_API_KEY;
+git add src/components/Weather.js
   // 📍 Get current location
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
