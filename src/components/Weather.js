@@ -9,7 +9,7 @@ function Weather() {
   const [coords, setCoords] = useState(null);
   const [theme, setTheme] = useState("light");
 
-  const API_KEY = "YOUR_API_KEY";
+  const API_KEY = process.env.REACT_APP_API_KEY;;
 
   // 📍 Get current location
   useEffect(() => {
